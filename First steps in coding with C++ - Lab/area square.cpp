@@ -6,5 +6,4 @@ int main() {
 	int side;
 	cin >> side;
 	cout << side * side;
-
 }
