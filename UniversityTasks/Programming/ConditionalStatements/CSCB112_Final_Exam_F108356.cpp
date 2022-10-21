@@ -4,14 +4,27 @@
 using namespace std;
 
 
-void enumerateNumber() {
-    string number;
+void enumerateNumber(string enumeratedNumber) {
+    for (int i = 0; i < enumeratedNumber.size(); i++) {
+        cout << i + 1 << "." << " " << enumeratedNumber[i] << endl;
+    }
+}
 
-    cout << "Enter a number: ";
-    cin >> number;
+void randomNumberInRange() {
+    int min, max, randomNumber;
 
-    for (int i = 0; i < number.size(); i++) {
-        cout << i + 1 << "." << " " << number[i] << endl;
+    cout << "Enter the minimum random value: ";
+    cin >> min;
+
+    cout << "Enter the maximum random value: ";
+    cin >> max;
+    
+    randomNumber = min + rand() % (max + 1 - min);
+
+    cout << "Your random number is: " << randomNumber << endl;
+
+    if (randomNumber < 1000) {
+        enumerateNumber(to_string(randomNumber));
     }
 }
 
@@ -74,7 +87,7 @@ string intToRoman(int num) {
 
 int main() {
     int num1;
-    string romanNumber;
+    string romanNumber, enumeratedNumber;
 
     cout << "Enter integer: ";
     cin >> num1;
@@ -85,7 +98,12 @@ int main() {
     cout << romanNumber << " is " << romanToInt(romanNumber) << " as integer" << endl;
 
     checkIfNumberInInterval();
-    enumerateNumber();
+
+    cout << "Enter a number: ";
+    cin >> enumeratedNumber;
+
+    enumerateNumber(enumeratedNumber);
+    randomNumberInRange();
 
     return 0;
 }
