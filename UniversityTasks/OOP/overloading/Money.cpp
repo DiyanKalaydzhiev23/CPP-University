@@ -1,5 +1,11 @@
 #include "Money.h"
 
+
+Money::Money() {
+    leva = 0;
+    stotinki = 0;
+}
+
 Money::Money(int l, int s) {
     leva = l;
     stotinki = s;
@@ -24,8 +30,6 @@ Money Money::operator +(const Money &other) {
 
     return Money(currentLeva, currentStotinki);
 }
-
-// Money(5, 30) + Money(2, 50) -> Money(2, 80)
 
 Money Money::operator -(const Money& other) {
     int currentLeva = leva - other.leva;
@@ -59,4 +63,46 @@ Money Money::operator /(int x) {
     int currentStotinki = newNumber % 100;
 
     return Money(currentLeva, currentStotinki);
+}
+
+bool Money::operator >(const Money &other) {
+    if (leva > other.leva) {
+        return true;
+    } else if (leva == other.leva && stotinki > other.stotinki) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Money::operator <(const Money &other) {
+    if (leva < other.leva) {
+        return true;
+    } else if (leva == other.leva && stotinki < other.stotinki) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Money::operator ==(const Money &other) {
+    return (leva == other.leva && stotinki == other.stotinki);
+}
+
+bool Money::operator !=(const Money &other) {
+    Money newObject = Money(leva, stotinki);
+
+    return !(newObject == other);
+}
+
+bool Money::operator >=(const Money &other) {
+    Money newObject = Money(leva, stotinki);
+
+    return newObject > other || newObject == other;
+}
+
+bool Money::operator <=(const Money &other) {
+    Money newObject = Money(leva, stotinki);
+
+    return newObject < other || newObject == other;
 }
