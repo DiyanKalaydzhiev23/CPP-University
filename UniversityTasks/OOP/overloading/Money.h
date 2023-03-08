@@ -36,6 +36,16 @@ class Money {
             output << m.leva << '.' << m.stotinki;
             return output;
         }
+
+        friend Money operator %(int intPercent, const Money &other) {
+            int newStotinki = (other.leva * 100 + other.stotinki) * (intPercent / 100.00);
+
+            int newLeva = newStotinki / 100;
+            newStotinki = newStotinki % 100;
+
+            return Money(newLeva, newStotinki);
+        }
+
     private:
         int leva;
         int stotinki;
