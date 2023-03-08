@@ -12,6 +12,11 @@ int main() {
     cin >> b;
     cout << b << endl;
 
+    int x = 2;
+
+    x += b;
+
+    cout << b << endl;
 
     return 0;
 }

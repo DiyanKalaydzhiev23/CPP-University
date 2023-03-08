@@ -9,10 +9,6 @@ BigInteger::BigInteger(int num) {
     number = num;
 }
 
-BigInteger::BigInteger(const BigInteger &otherInteger){
-    this -> number = otherInteger.number;
-}
-
 BigInteger::BigInteger(string numberInText) {
     number = std::stoi(numberInText);
 }

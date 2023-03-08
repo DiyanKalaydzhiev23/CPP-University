@@ -3,10 +3,14 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <sstream>
 
 using std::string;
 using std::istream;
 using std::ostream;
+using std::stringstream;
+using std::vector;
 
 class Building {
     friend Building operator +(int buildEntries, Building &building) {
@@ -21,20 +25,30 @@ class Building {
         return building;
     }
 
-    friend istream &operator >>(istream  &input, Building &b) {
-        string commaAndSpace = ", ";
+    friend istream &operator >>(istream  &is, Building &b) {
+        string input; // ul ivan marinov,10,10
+        getline(is, input);
 
-        // example input -> ul ivan marinov, 10, 10
-        input >> b.address >> commaAndSpace >> b.floorsPlaned >> commaAndSpace >> b.entriesPlaned;
+        stringstream ss(input);
+        vector<string> tokens;
+        string token;
 
-        return input;
+        while (getline(ss, token, ',')) {
+            tokens.push_back(token);
+        }
+
+        b.address = tokens[0];
+        b.floorsPlaned = stoi(tokens[1]);
+        b.entriesPlaned = stoi(tokens[2]);
+
+        return is;
     }
 
     friend ostream &operator <<(ostream  &output, Building &b) {
-        output << "Address: " << b.address << " "
-        << "Planed floors: " << b.floorsPlaned << " "
-        << "Build floors: " << b.floorsBuild << " "
-        << "Planed entries: " << b.entriesPlaned << " "
+        output << "Address: " << b.address << ", "
+        << "Planed floors: " << b.floorsPlaned << ", "
+        << "Build floors: " << b.floorsBuild << ", "
+        << "Planed entries: " << b.entriesPlaned << ", "
         << "Build entries: " << b.entriesBuild;
 
         return output;
