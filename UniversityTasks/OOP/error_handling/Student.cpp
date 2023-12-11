@@ -4,11 +4,15 @@
 #include <cassert>
 
 using std::strlen;
-
+using std::invalid_argument;
 
 Student::Student(char *n, char *e, char *f, double g) : People(n, e) {
     fnum = new char[strlen(f) + 1];
-    assert(fnum != NULL);
+
+    if (fnum != NULL) {
+        throw invalid_argument("Student number cannot be null");
+    }
+
     strcpy_s(fnum, strlen(f) + 1, f);
 
     if (g >= 2 && g <= 6) grade = g;
@@ -18,8 +22,12 @@ Student::Student(char *n, char *e, char *f, double g) : People(n, e) {
 
 Student::Student(const Student &s) : People(s) {
     std::cout << "Student(const & )\n";
+
     fnum = new char[strlen(s.fnum) + 1];
-    assert(fnum != NULL);
+
+    if (fnum != NULL) {
+        throw invalid_argument("Student number cannot be null");
+    }
     strcpy_s(fnum, strlen(s.fnum) + 1, s.fnum);
 
     grade = s.grade;

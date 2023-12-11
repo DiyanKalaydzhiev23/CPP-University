@@ -26,6 +26,7 @@ string toFraction(double num) {
 
     int numerator = round(num * denominator);
     int divisor = gcd(numerator, denominator);
+    
     numerator /= divisor;
     denominator /= divisor;
 
@@ -54,7 +55,7 @@ int main() {
 
         for (int i = 0; i < listLength; i++) {
             double number;
-            
+
             issn >> number;
             numbers.push(number);
         }

@@ -1,0 +1,6 @@
+#ifndef MODULES_FINDDAYSWITHTEMPUNDERZEROCOUNT_H
+#define MODULES_FINDDAYSWITHTEMPUNDERZEROCOUNT_H
+
+int findDaysWithTempUnderZeroCount(float **array, int days, int measurements);
+
+#endif //MODULES_FINDDAYSWITHTEMPUNDERZEROCOUNT_H
